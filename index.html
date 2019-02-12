@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>TS for Node</title>
+
+	<meta name="description" content="Using TypeScript in node & building backends">
+	<meta name="author" content="Paul Shannon">
+
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="node_modules/reveal.js/css/theme/sky.css" id="theme">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+	<link rel="stylesheet" href="resources/main.css">
+
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'node_modules/reveal.js/css/print/pdf.css' : 'node_modules/reveal.js/css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+
+<div class="reveal">
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+		<section>
+			<h2>TypeScript for Node</h2>
+		</section>
+
+		<section>
+			<h2>Hello!</h2>
+
+			<div class="two-column">
+				<div>
+					<h3>Paul Shannon</h3>
+					<img src="assets/images/sitepen.png" class="removeFormatting">
+				</div>
+				<div>
+					<ul>
+						<li>Sr Engineer @ SitePen</li>
+						<li><a href="https://talkscript.fm">Talkscript Podcast</a></li>
+						<li>Phoenix TypeScript</li>
+						<li>Committer: Dojo, Intern</li>
+						<li class="github no-style"><a href="https://github.com/devpaul">devpaul</a></li>
+						<li class="twitter no-style"><a href="https://twitter.com/developerPaul">@developerPaul</a></li>
+					</ul>
+				</div>
+			</div>
+			<aside class="notes">
+				TODO add images to intern, podcast, phxts, github, twitter
+			</aside>
+		</section>
+
+		<section>
+			<h3>Topics</h3>
+
+			<ul>
+				<li class="fragment">Why TypeScript?</li>
+				<li class="fragment">TypeScript & Node tools</li>
+				<li class="fragment">Writing backends</li>
+			</ul>
+		</section>
+
+		<section class="full">
+			<div class="georgeharold">
+				<div>
+					<h3>But before I tell you that story</h3>
+					<p class="rightAligned fragment">I have to tell this one...</p>
+				</div>
+			</div>
+			<img class="removeFormatting bottomcorner" src="./assets/images/georgeharold.png">
+		</section>
+
+		<section>
+			<p>Demo Project for Today:</p>
+
+			<h2>I'm Right</h2>
+			<aside class="notes">
+				<ul>
+					<li>A while ago my wife came up with this idea</li>
+					<li>An app that tracks whenever you're right</li>
+					<li>It would have a button you can push</li>
+					<li>And it would keep track of when you were right</li>
+					<li>it would applaud and let you share all the times you were right</li>
+				</ul>
+				<p>That brings us to today. When we came up with this topic it was a great reason to start this project.</p>
+			</aside>
+		</section>
+
+		<section>
+			<h2>Why TypeScript?</h2>
+		</section>
+
+		<section>
+			<p>Better development is about creating faster feedback</p>
+		</section>
+
+		<section>
+			<h3>Benefits</h3>
+
+			<ul>
+				<li class="fragment">Provides (optional) static typing</li>
+				<li class="fragment">Improved integration w/ IDEs</li>
+				<li class="fragment">Continually improving code quality</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>static typing is great for guaranteeing contracts between developers</li>
+					<li>Improved IDE integration leads to better completion and refactoring</li>
+					<li>New versions of TS bring more analysis of your code --strict will automatically add</li>
+				</ul>
+			</aside>
+		</section>
+
+		<section>
+			<pre><code data-no-escape data-trim>
+				public function sample(): string {
+					// Some really long function
+					// 200 lines...
+					if (Math.random() > 0.99) {
+						return; // whoops!
+					}
+					// 200 lines...
+				}
+			</code></pre>
+
+			<p>Types ensure you fail during design time</p>
+			<p>instead of production</p>
+		</section>
+
+		<section>
+			<h2>TypeScript & Node</h2>
+		</section>
+
+		<section>
+			<h3>How do we iterate faster?</h3>
+		</section>
+
+		<section>
+			<h4>ts-node</h4>
+
+			<p>A CLI and execution environment that automatically compiles TypeScript files</p>
+		</section>
+
+		<section>
+			<h4>nodemon</h4>
+
+			<p>Watches for changes and automatically restarts applications and processes</p>
+		</section>
+
+		<section>
+			<p>ts-node and nodemon together</p>
+			<p>=</p>
+			<p>Zero compilation restart on save</p>
+			<aside class="notes">
+				Demo!
+
+				<ul>
+					<li>nodemon.json</li>
+					<li>package.json - start:dev</li>
+					<li>Make a change</li>
+				</ul>
+			</aside>
+		</section>
+
+		<section>
+			<h3>How do we debug?</h3>
+		</section>
+
+		<section>
+			<p>ts-node supports debugging and source maps too!</p>
+			<aside class="notes">
+				<ul>
+					<li>npm run start:debug</li>
+					<li>chrome://inspect</li>
+					<li>copy-paste ws site</li>
+					<li>set a breakpoint and play</li>
+				</ul>
+			</aside>
+		</section>
+
+		<section>
+			<h2>Building backends with TypeScript</h2>
+		</section>
+
+		<section class="title">
+			<div>
+				<h3>NestJS</h3>
+				<img src="./assets/images/nest.jpg">
+				<p>A Node server framework written in TypeScript</p>
+
+			</div>
+		</section>
+
+		<section>
+			<h3>Features</h3>
+
+			<ul>
+				<li class="fragment">Authored in TypeScript</li>
+				<li class="fragment">Built on top of Express</li>
+				<li class="fragment">modern language features like async/await</li>
+				<li class="fragment">decorators to reduce cruft</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Controller</h3>
+
+			<p>Handles routes & HTTP requests for the application</p>
+			<aside class="notes">
+				show user controller
+			</aside>
+		</section>
+
+		<section>
+			<h3>Providers</h3>
+
+			<p>Typically hold and mutate state to be injected</p>
+			<aside class="notes">
+				Show UserService
+			</aside>
+		</section>
+
+		<section>
+			<h3>Module</h3>
+
+			<p>Provides metadata about the structure of a feature</p>
+			<aside class="notes">
+				Show UserModule & AuthModule
+			</aside>
+		</section>
+
+		<section>
+			<h3>Solutions For</h3>
+
+			<ul>
+				<li>Authentication</li>
+				<li>Persistence</li>
+				<li>Uploading files</li>
+				<li>Validation</li>
+				<li>Logging</li>
+				<li>Security</li>
+				<li>GraphQL</li>
+				<li>Websockets</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Passport & jwt.strategy.ts</li>
+				</ul>
+			</aside>
+		</section>
+
+		<section>
+			<h3>Other features</h3>
+
+			<ul>
+				<li>Nest CLI</li>
+				<li>Middlewares</li>
+				<li>Exception filters</li>
+				<li>Pipes</li>
+				<li>Guards</li>
+				<li>Interceptors</li>
+				<li>Custom Decorators</li>
+			</ul>
+			<aside class="notes">
+				<p>User Custom decorator</p>
+				<ul>
+					<li>Middleware allows for modules to intercept</li>
+					<li>Exception filters allows for specific exception handling</li>
+					<li>Pipes transform the input data</li>
+					<li>Guards limit access to methods, Controllers, or globally</li>
+					<li>Interceptors allow you to do things before or after a request</li>
+					<li>Custom Decorators provide simple access to the request</li>
+				</ul>
+			</aside>
+		</section>
+
+		<section>
+			<h3>TypeORM</h3>
+
+			<img src="./assets/images/typeorm.png">
+
+			<p>ORM written in TypeScript for node</p>
+		</section>
+
+		<section>
+			<h3>Features</h3>
+
+			<ul>
+				<li class="fragment">Authored in TypeScript</li>
+				<li class="fragment">Decorators remove boilerplate</li>
+				<li class="fragment">Active Record & Data Mapper patterns</li>
+				<li class="fragment">Entity and Column support</li>
+				<li class="fragment">Relations</li>
+				<li class="fragment">Query builder</li>
+				<li class="fragment">Migration support</li>
+			</ul>
+			<aside class="notes">
+				Demo
+				<ul>
+					<li>Show Imright service</li>
+					<li>Show Imright entity</li>
+				</ul>
+			</aside>
+		</section>
+
+		<section>
+			<h3>More tools</h3>
+
+			<ul>
+				<li class="fragment">prettier</li>
+				<li class="fragment">eslint</li>
+				<li class="fragment">Postman</li>
+				<li class="fragment">Docker</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Questions?</h2>
+		</section>
+	</div>
+</div>
+
+<script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="node_modules/reveal.js/js/reveal.js"></script>
+<script src="src/index.js"></script>
+
+</body>
+</html>
