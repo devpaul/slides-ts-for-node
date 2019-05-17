@@ -123,7 +123,7 @@
 				<ul>
 					<li>static typing is great for guaranteeing contracts between developers</li>
 					<li>Improved IDE integration leads to better completion and refactoring</li>
-					<li>New versions of TS bring more analysis of your code --strict will automatically add</li>
+					<li>New versions of TS bring more analysis of your code --strict will automatically add checks</li>
 				</ul>
 			</aside>
 		</section>
@@ -142,6 +142,9 @@
 
 			<p>Types ensure you fail during design time</p>
 			<p>instead of production</p>
+			<aside class="notes">
+				This happens often. Someone addresses a corner case by returning out of a function without a value. This could easily be missed in a test w/o full branch coverage or even if outcomes aren't properly checked (i.e. `undefined` cast to a `string` for display). TypeScript catches this immediately.
+			</aside>
 		</section>
 
 		<section>
@@ -169,7 +172,7 @@
 			<p>=</p>
 			<p>Zero compilation restart on save</p>
 			<aside class="notes">
-				Demo!
+				<b>Demo!</b>
 
 				<ul>
 					<li>nodemon.json</li>
@@ -186,6 +189,7 @@
 		<section>
 			<p>ts-node supports debugging and source maps too!</p>
 			<aside class="notes">
+				<b>Demo!</b>
 				<ul>
 					<li>npm run start:debug</li>
 					<li>chrome://inspect</li>
@@ -224,7 +228,9 @@
 
 			<p>Handles routes & HTTP requests for the application</p>
 			<aside class="notes">
-				show user controller
+				<b>Demo!</b>
+
+				show user.controller
 			</aside>
 		</section>
 
@@ -233,7 +239,9 @@
 
 			<p>Typically hold and mutate state to be injected</p>
 			<aside class="notes">
-				Show UserService
+				<b>Demo!</b>
+
+				Show user.service
 			</aside>
 		</section>
 
@@ -242,6 +250,8 @@
 
 			<p>Provides metadata about the structure of a feature</p>
 			<aside class="notes">
+				<b>Demo!</b>
+
 				Show UserModule & AuthModule
 			</aside>
 		</section>
@@ -260,6 +270,8 @@
 				<li>Websockets</li>
 			</ul>
 			<aside class="notes">
+				<b>Demo!</b>
+
 				<ul>
 					<li>Passport & jwt.strategy.ts</li>
 				</ul>
@@ -279,7 +291,6 @@
 				<li>Custom Decorators</li>
 			</ul>
 			<aside class="notes">
-				<p>User Custom decorator</p>
 				<ul>
 					<li>Middleware allows for modules to intercept</li>
 					<li>Exception filters allows for specific exception handling</li>
@@ -287,6 +298,11 @@
 					<li>Guards limit access to methods, Controllers, or globally</li>
 					<li>Interceptors allow you to do things before or after a request</li>
 					<li>Custom Decorators provide simple access to the request</li>
+				</ul>
+				<p><b>Demo</b></p>
+				<ul>
+					<li>decorators/User.ts</li>
+					<li>imright.controller</li>
 				</ul>
 			</aside>
 		</section>
@@ -312,10 +328,10 @@
 				<li class="fragment">Migration support</li>
 			</ul>
 			<aside class="notes">
-				Demo
+				<b>Demo!</b>
 				<ul>
-					<li>Show Imright service</li>
-					<li>Show Imright entity</li>
+					<li>Show imright.entity</li>
+					<li>Show imright.service</li>
 				</ul>
 			</aside>
 		</section>
